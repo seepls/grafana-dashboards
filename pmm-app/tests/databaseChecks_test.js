@@ -26,53 +26,53 @@ Scenario(
     }
 );
 
-Feature('Database Failed Checks (enabledSTT state)');
+// Feature('Database Failed Checks (enabledSTT state)');
 
-Before( async (I, pmmSettingsPage) => {
-    I.Authorize();
-    I.amOnPage(pmmSettingsPage.url);
-    await pmmSettingsPage.enableSTT();
-});
+// Before( async (I, pmmSettingsPage) => {
+//     I.Authorize();
+//     I.amOnPage(pmmSettingsPage.url);
+//     await pmmSettingsPage.enableSTT();
+// });
 
-Scenario(
-    'PMM-T233 PMM-T234 Verify user is able to access PMM Database Checks through UI and with URL @not-pr-pipeline',
-    async (I, adminPage, databaseChecksPage) => {
-        adminPage.selectItemFromPMMDropdown('PMM Database Checks');
-        I.waitForVisible(databaseChecksPage.fields.dbCheckPanelSelector, 30);
-        await databaseChecksPage.verifyDatabaseChecksPageOpened();
-        I.amOnPage(databaseChecksPage.url);
-        I.waitForVisible(databaseChecksPage.fields.dbCheckPanelSelector, 30);
-        await databaseChecksPage.verifyDatabaseChecksPageOpened();
-    }
-);
+// Scenario(
+//     'PMM-T233 PMM-T234 Verify user is able to access PMM Database Checks through UI and with URL @not-pr-pipeline',
+//     async (I, adminPage, databaseChecksPage) => {
+//         adminPage.selectItemFromPMMDropdown('PMM Database Checks');
+//         I.waitForVisible(databaseChecksPage.fields.dbCheckPanelSelector, 30);
+//         await databaseChecksPage.verifyDatabaseChecksPageOpened();
+//         I.amOnPage(databaseChecksPage.url);
+//         I.waitForVisible(databaseChecksPage.fields.dbCheckPanelSelector, 30);
+//         await databaseChecksPage.verifyDatabaseChecksPageOpened();
+//     }
+// );
 
-Scenario(
-    'PMM-T233 Verify user can see Number of failed checks at Home Page and open PMM Database Checks page from it @not-pr-pipeline',
-    async (I, homePage, databaseChecksPage) => {
-        I.amOnPage(homePage.url);
-        I.waitForVisible(homePage.fields.checksPanelSelector, 30);
-        await homePage.waitForCheckResultsToAppearInPanel();
-        I.doubleClick(homePage.fields.sttFailedChecksPanelSelector);
-        await databaseChecksPage.verifyDatabaseChecksPageOpened();
-    }
-);
+// Scenario(
+//     'PMM-T233 Verify user can see Number of failed checks at Home Page and open PMM Database Checks page from it @not-pr-pipeline',
+//     async (I, homePage, databaseChecksPage) => {
+//         I.amOnPage(homePage.url);
+//         I.waitForVisible(homePage.fields.checksPanelSelector, 30);
+//         await homePage.waitForCheckResultsToAppearInPanel();
+//         I.doubleClick(homePage.fields.sttFailedChecksPanelSelector);
+//         await databaseChecksPage.verifyDatabaseChecksPageOpened();
+//     }
+// );
 
-Scenario(
-    'PMM-T236 Verify user is able to hover Failed Checks values and see tooltip @not-pr-pipeline',
-    async (I, databaseChecksPage) => {
-        const row = 1;
-        I.amOnPage(databaseChecksPage.url);
-        await databaseChecksPage.verifyDatabaseChecksPageOpened();
-        databaseChecksPage.mouseOverInfoIcon(row);
-        await databaseChecksPage.compareTooltipValues(row);
-    }
-);
+// Scenario(
+//     'PMM-T236 Verify user is able to hover Failed Checks values and see tooltip @not-pr-pipeline',
+//     async (I, databaseChecksPage) => {
+//         const row = 1;
+//         I.amOnPage(databaseChecksPage.url);
+//         await databaseChecksPage.verifyDatabaseChecksPageOpened();
+//         databaseChecksPage.mouseOverInfoIcon(row);
+//         await databaseChecksPage.compareTooltipValues(row);
+//     }
+// );
 
-Scenario(
-    'PMM-T241 Verify user can see correct service name for failed checks @not-pr-pipeline',
-    async (I, databaseChecksPage) => {
-        I.amOnPage(databaseChecksPage.url);
-        await databaseChecksPage.verifyDatabaseChecksPageOpened();
-        await databaseChecksPage.verifyServiceNamesExistence();
-    }
-);
+// Scenario(
+//     'PMM-T241 Verify user can see correct service name for failed checks @not-pr-pipeline',
+//     async (I, databaseChecksPage) => {
+//         I.amOnPage(databaseChecksPage.url);
+//         await databaseChecksPage.verifyDatabaseChecksPageOpened();
+//         await databaseChecksPage.verifyServiceNamesExistence();
+//     }
+// );
