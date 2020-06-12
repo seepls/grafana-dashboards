@@ -1,0 +1,18 @@
+groups:
+- name: CPU Utilization Details
+  rules:
+
+  - alert: OverallCPUUtilizationExceedingThreshold
+    # Over all CPU utilization : shows how much CPU time is used by the server.
+    # While there can be a lot of unused CPU, a single core may be saturated. 
+    # The idea is to look at the Max Core Utilization to see if any core is reaching close to threshold.
+    # Aim is to get notified with status Trouble or Critical when CPU Utilization crosses the configured threshold.
+
+    expr: clamp_max(max by () (max_over_time(node_cpu_average{node_name="$node_name", mode!="total", mode!="idle", mode!="wait"}[5m])),100)
+    for: 5m
+    labels:
+      severity: high
+    annotations:
+      summary: "Overall CPU Utilization exceeds 80%  for (instance {{ $node_name }})"
+
+
